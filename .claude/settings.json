@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rustlings list *)",
+      "Bash(rustlings run *)",
+      "Bash(rustlings hint *)",
+      "Bash(cargo test *)",
+      "Bash(./run.sh iterators2 *)",
+      "Bash(cargo run *)",
+      "Bash(rustc --test exercises/iterators/iterators3.rs --extern rustc_private)",
+      "Bash(./iterators3)",
+      "Bash(rustc --test exercises/iterators/iterators5.rs --extern \"std=exercises/iterators/iterators5.rs\" -o test_iterators5)",
+      "Bash(./test_iterators5 count_complete_equals_for)",
+      "Bash(./target/debug/deps/rustlings)",
+      "Bash(rustc --test exercises/iterators/iterators5.rs --edition 2021 -o iterators5_test)",
+      "Bash(./iterators5_test)",
+      "Bash(rustc --test exercises/smart_pointers/rc1.rs --edition 2021 -o rc1_test)",
+      "Bash(./rc1_test)",
+      "Bash(rustc exercises/smart_pointers/rc1.rs --edition 2021 -o rc1)",
+      "Bash(./rc1)"
+    ]
+  }
+}
