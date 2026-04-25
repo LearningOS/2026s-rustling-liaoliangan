@@ -21,7 +21,9 @@
       "Bash(rustc --test exercises/smart_pointers/cow1.rs --edition 2021 -o cow1_test)",
       "Bash(./cow1_test)",
       "Bash(rustc --edition 2021 clippy1.rs -o clippy1_test)",
-      "Bash(./clippy1_test)"
+      "Bash(./clippy1_test)",
+      "Bash(rustc --test exercises/tests/tests6.rs --extern exercises=target/debug/deps/exercises.rlib -o test6)",
+      "Bash(./test6)"
     ]
   }
 }
