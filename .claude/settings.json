@@ -17,7 +17,11 @@
       "Bash(rustc --test exercises/smart_pointers/rc1.rs --edition 2021 -o rc1_test)",
       "Bash(./rc1_test)",
       "Bash(rustc exercises/smart_pointers/rc1.rs --edition 2021 -o rc1)",
-      "Bash(./rc1)"
+      "Bash(./rc1)",
+      "Bash(rustc --test exercises/smart_pointers/cow1.rs --edition 2021 -o cow1_test)",
+      "Bash(./cow1_test)",
+      "Bash(rustc --edition 2021 clippy1.rs -o clippy1_test)",
+      "Bash(./clippy1_test)"
     ]
   }
 }
