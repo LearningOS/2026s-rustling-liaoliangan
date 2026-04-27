@@ -2,8 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
-
 use std::cmp::Ord;
 use std::default::Default;
 
@@ -37,7 +35,42 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+        self.count += 1;
+
+        // Ensure we have enough space
+        if self.items.len() <= self.count {
+            self.items.push(T::default());
+        }
+
+        // Add the new element at the end
+        self.items[self.count] = value;
+
+        // Bubble up to maintain heap property
+        self.bubble_up(self.count);
+    }
+
+    fn bubble_up(&mut self, idx: usize) {
+        if idx == 1 {
+            return; // At root
+        }
+
+        let parent_idx = self.parent_idx(idx);
+        if (self.comparator)(&self.items[idx], &self.items[parent_idx]) {
+            self.items.swap(idx, parent_idx);
+            self.bubble_up(parent_idx);
+        }
+    }
+
+    fn bubble_down(&mut self, idx: usize) {
+        if !self.children_present(idx) {
+            return; // No children
+        }
+
+        let smallest_child_idx = self.smallest_child_idx(idx);
+        if (self.comparator)(&self.items[smallest_child_idx], &self.items[idx]) {
+            self.items.swap(idx, smallest_child_idx);
+            self.bubble_down(smallest_child_idx);
+        }
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -57,8 +90,21 @@ where
     }
 
     fn smallest_child_idx(&self, idx: usize) -> usize {
-        //TODO
-		0
+        let left_idx = self.left_child_idx(idx);
+        let right_idx = self.right_child_idx(idx);
+
+        // Check if right child exists
+        if right_idx <= self.count {
+            // Return the index of the child that satisfies the heap property
+            if (self.comparator)(&self.items[left_idx], &self.items[right_idx]) {
+                left_idx
+            } else {
+                right_idx
+            }
+        } else {
+            // Only left child exists
+            left_idx
+        }
     }
 }
 
@@ -84,8 +130,23 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        //TODO
-		None
+        if self.is_empty() {
+            return None;
+        }
+
+        // Get the root element (min or max depending on heap type)
+        let result = std::mem::replace(&mut self.items[1], T::default());
+
+        // Move the last element to the root
+        self.items[1] = std::mem::replace(&mut self.items[self.count], T::default());
+        self.count -= 1;
+
+        // Bubble down to maintain heap property
+        if self.count > 0 {
+            self.bubble_down(1);
+        }
+
+        Some(result)
     }
 }
 
